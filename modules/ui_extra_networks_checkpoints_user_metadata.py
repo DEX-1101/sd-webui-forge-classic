@@ -4,7 +4,7 @@ from modules import ui_extra_networks_user_metadata, sd_vae, shared
 from modules.ui_components import ToolButton
 from modules_forge import main_entry
 
-refresh_symbol = '\U0001f504'  # 🔄
+refresh_symbol = "↻"
 
 class CheckpointUserMetadataEditor(ui_extra_networks_user_metadata.UserMetadataEditor):
     def __init__(self, ui, tabname, page):
