@@ -440,7 +440,7 @@ options_templates.update(
             "quicksettings_accordion_starts_closed": OptionInfo(False, "Close the Accordion on startup").info("for the above option").needs_reload_ui(),
             "forbidden_knowledge": OptionInfo(False, "Forbidden Knowledge").info('replace "<b>DPM++ 2s a RF</b>" with "<b>Flux Realistic</b>"').needs_restart(),
             "div_prompt": OptionDiv(),
-            "prompt_box_style": OptionInfo("Default", "Prompt Layout", gr.Radio, {"choices": ("Default", "Compact", "Scrollable", "Accordion")})
+            "prompt_box_style": OptionInfo("Compact", "Prompt Layout", gr.Radio, {"choices": ("Default", "Compact", "Scrollable", "Accordion")})
             .html(
                 f"""
 <ul style='margin-left: 1.5em'>

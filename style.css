@@ -9,6 +9,10 @@
     --checkbox-label-gap: 0.25em 0.1em;
     --section-header-text-size: 12pt;
     --block-background-fill: transparent;
+    --forge-compact-gap: 0.45rem;
+    --forge-compact-gap-tight: 0.3rem;
+    --forge-compact-padding: 0.45rem;
+    --forge-compact-radius: 0.45rem;
 }
 
 .block.padded:not(.gradio-accordion) {
@@ -33,7 +37,36 @@ div.form {
     box-shadow: none;
     background: transparent;
     overflow: visible;
-    gap: 0.5em;
+    gap: var(--forge-compact-gap);
+}
+
+/* minimalist baseline layout */
+.forge-compact-ui {
+    --block-radius: var(--forge-compact-radius);
+    --input-radius: var(--forge-compact-radius);
+    --button-large-radius: var(--forge-compact-radius);
+    --layout-gap: var(--forge-compact-gap);
+}
+
+.forge-compact-ui .block,
+.forge-compact-ui .form,
+.forge-compact-ui .gradio-group {
+    margin: 0 !important;
+}
+
+.forge-compact-ui .block:not(.gradio-accordion):not(.gradio-gallery) {
+    padding: var(--forge-compact-padding) !important;
+}
+
+.forge-compact-ui .gradio-row,
+.forge-compact-ui .gradio-column,
+.forge-compact-ui .gradio-tab {
+    gap: var(--forge-compact-gap) !important;
+}
+
+.forge-compact-ui .prose,
+.forge-compact-ui .gradio-markdown {
+    line-height: 1.35;
 }
 
 .block.gradio-dropdown,
@@ -60,7 +93,7 @@ div.styler {
 }
 
 div.compact {
-    gap: 1em;
+    gap: var(--forge-compact-gap);
 }
 
 .gradio-dropdown label span:not(.has-info),
@@ -171,12 +204,18 @@ div.gradio-dropdown {
 /* general styled components */
 
 .gradio-button.tool {
-    max-width: 2.2em;
-    min-width: 2.2em !important;
-    height: 2.4em;
+    max-width: 2em;
+    min-width: 2em !important;
+    height: 2.2em;
     align-self: end;
     line-height: 1em;
-    border-radius: 0.5em;
+    border-radius: var(--forge-compact-radius);
+}
+
+.forge-compact-ui button,
+.forge-compact-ui input,
+.forge-compact-ui textarea {
+    min-height: 2.05rem;
 }
 
 .gradio-button.secondary-down {
@@ -214,9 +253,9 @@ button.custom-button {
 
 div.block.gradio-accordion {
     border: 1px solid var(--block-border-color) !important;
-    border-radius: 8px !important;
+    border-radius: var(--forge-compact-radius) !important;
     margin: 2px 0;
-    padding: 8px 8px;
+    padding: 6px;
 }
 
 input[type="checkbox"].input-accordion-checkbox {
@@ -321,12 +360,12 @@ input[type="checkbox"].input-accordion-checkbox {
 
 #txt2img_generate,
 #img2img_generate {
-    min-height: 4.5em;
+    min-height: 3.8em;
 }
 
 #txt2img_generate,
 #img2img_generate {
-    min-height: 4.5em;
+    min-height: 3.8em;
 }
 
 .generate-box-compact #txt2img_generate,
@@ -352,12 +391,12 @@ input[type="checkbox"].input-accordion-checkbox {
 
 #txt2img_actions_column,
 #img2img_actions_column {
-    gap: 0.5em;
+    gap: var(--forge-compact-gap-tight);
 }
 
 #txt2img_tools,
 #img2img_tools {
-    gap: 0.4em;
+    gap: var(--forge-compact-gap-tight);
 }
 
 .generate-box {
@@ -450,15 +489,47 @@ div.toprow-compact-stylerow {
     margin: 0.5em 0;
 }
 
+div.toprow-compact-toolbar {
+    margin: 0.35em 0 0.5em;
+    align-items: center;
+    gap: var(--forge-compact-gap-tight) !important;
+}
+
+div.toprow-compact-styles {
+    min-width: 0;
+}
+
 div.toprow-compact-tools {
     min-width: fit-content !important;
     max-width: fit-content;
+}
+
+.toprow-tools-row {
+    justify-content: flex-end;
+    gap: var(--forge-compact-gap-tight) !important;
+}
+
+.gradio-button.modern-tool {
+    border-radius: var(--forge-compact-radius);
+    border: 1px solid var(--input-border-color);
+    background: var(--button-secondary-background-fill);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.gradio-button.modern-tool:hover {
+    background: var(--button-secondary-background-fill-hover);
+}
+
+.compact-settings-stack {
+    gap: var(--forge-compact-gap-tight) !important;
 }
 
 /* settings */
 #quicksettings {
     --checkbox-label-padding: 0.5em;
     align-items: flex-start;
+    gap: var(--forge-compact-gap);
 }
 
 #quicksettings>* {
@@ -476,7 +547,7 @@ div.toprow-compact-tools {
 
 #quicksettings>button {
     margin: auto 0;
-    margin-top: 1.5em;
+    margin-top: 1.1em;
 }
 
 #quicksettings div span[data-testid="block-info"] {
@@ -507,7 +578,7 @@ div.toprow-compact-tools {
 
 #quicksettings .gradio-slider {
     min-width: 10em !important;
-    margin-top: 1em;
+    margin-top: 0.65em;
 }
 
 #quicksettings .gradio-slider span {
@@ -519,7 +590,7 @@ div.toprow-compact-tools {
 }
 
 #quicksettings .gradio-checkbox {
-    margin-top: 2em;
+    margin-top: 1.4em;
 }
 
 #forge_ui_preset input {

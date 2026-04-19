@@ -64,11 +64,11 @@ class Toprow:
 
         self.create_prompts()
 
-        with gr.Row(elem_classes=["toprow-compact-stylerow"]):
-            with gr.Column(elem_classes=["toprow-compact-tools"]):
-                self.create_tools_row()
-            with gr.Column():
+        with gr.Row(elem_classes=["toprow-compact-toolbar"]):
+            with gr.Column(scale=8, elem_classes=["toprow-compact-styles"]):
                 self.create_styles_ui()
+            with gr.Column(scale=4, elem_classes=["toprow-compact-tools"]):
+                self.create_tools_row()
 
     def create_inline_toprow_image(self):
         if not self.is_compact:
@@ -128,18 +128,18 @@ class Toprow:
             self.interrupting.click(fn=interrupt_function)
 
     def create_tools_row(self):
-        with gr.Row(elem_id=f"{self.id_part}_tools"):
+        with gr.Row(elem_id=f"{self.id_part}_tools", elem_classes=["toprow-tools-row"]):
             from modules.ui import (
                 clear_prompt_symbol,
                 paste_symbol,
                 restore_progress_symbol,
             )
 
-            self.paste = ToolButton(value=paste_symbol, elem_id="paste", tooltip="Read generation parameters from prompt or last generation if prompt is empty into user interface.")
-            self.clear_prompt_button = ToolButton(value=clear_prompt_symbol, elem_id=f"{self.id_part}_clear_prompt", tooltip="Clear prompt")
-            self.apply_styles = ToolButton(value=ui_prompt_styles.styles_materialize_symbol, elem_id=f"{self.id_part}_style_apply", tooltip="Apply all selected styles to prompts. Strips comments, if enabled.")
+            self.paste = ToolButton(value=paste_symbol, elem_id="paste", elem_classes=["modern-tool"], tooltip="Read generation parameters from prompt or last generation if prompt is empty into user interface.")
+            self.clear_prompt_button = ToolButton(value=clear_prompt_symbol, elem_id=f"{self.id_part}_clear_prompt", elem_classes=["modern-tool"], tooltip="Clear prompt")
+            self.apply_styles = ToolButton(value=ui_prompt_styles.styles_materialize_symbol, elem_id=f"{self.id_part}_style_apply", elem_classes=["modern-tool"], tooltip="Apply all selected styles to prompts. Strips comments, if enabled.")
 
-            self.restore_progress_button = ToolButton(value=restore_progress_symbol, elem_id=f"{self.id_part}_restore_progress", visible=False, tooltip="Restore progress")
+            self.restore_progress_button = ToolButton(value=restore_progress_symbol, elem_id=f"{self.id_part}_restore_progress", elem_classes=["modern-tool"], visible=False, tooltip="Restore progress")
 
             self.token_counter = gr.HTML(value="<span>0/75</span>", elem_id=f"{self.id_part}_token_counter", elem_classes=["token-counter"], visible=False)
             self.token_button = gr.Button(visible=False, elem_id=f"{self.id_part}_token_button")

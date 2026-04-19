@@ -13,7 +13,7 @@ from modules import call_queue, shared, ui_tempdir, util
 from modules.ui_components import ToolButton
 
 folder_symbol = "\U0001f4c2"  # 📂
-refresh_symbol = "\U0001f504"  # 🔄
+refresh_symbol = "↻"
 
 
 def update_generation_info(generation_info, html_info, img_index):

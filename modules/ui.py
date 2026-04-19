@@ -59,17 +59,17 @@ def gr_show(visible=True):
 
 # Using constants for these since the variation selector isn't visible.
 # Important that they exactly match script.js for tooltip to work.
-random_symbol = "\U0001f3b2\ufe0f"  # 🎲️
-reuse_symbol = "\u267b\ufe0f"  # ♻️
-paste_symbol = "\u2199\ufe0f"  # ↙
-refresh_symbol = "\U0001f504"  # 🔄
-save_style_symbol = "\U0001f4be"  # 💾
-apply_style_symbol = "\U0001f4cb"  # 📋
-clear_prompt_symbol = "\U0001f5d1\ufe0f"  # 🗑️
-extra_networks_symbol = "\U0001f3b4"  # 🎴
-switch_values_symbol = "\U000021c5"  # ⇅
-restore_progress_symbol = "\U0001f300"  # 🌀
-detect_image_size_symbol = "\U0001f4d0"  # 📐
+random_symbol = "⟲"
+reuse_symbol = "↺"
+paste_symbol = "⤶"
+refresh_symbol = "↻"
+save_style_symbol = "⤓"
+apply_style_symbol = "✓"
+clear_prompt_symbol = "✕"
+extra_networks_symbol = "◫"
+switch_values_symbol = "⇄"
+restore_progress_symbol = "⟲"
+detect_image_size_symbol = "⤢"
 
 
 plaintext_to_html = ui_common.plaintext_to_html
@@ -207,7 +207,7 @@ def create_ui():
     scripts.scripts_current = scripts.scripts_txt2img
     scripts.scripts_txt2img.initialize_scripts(is_img2img=False)
 
-    with gr.Blocks(analytics_enabled=False, head=canvas_head) as txt2img_interface:
+    with gr.Blocks(analytics_enabled=False, head=canvas_head, elem_classes=["forge-compact-ui"]) as txt2img_interface:
         toprow = ui_toprow.Toprow(is_img2img=False)
 
         dummy_component = gr.Textbox(visible=False)
@@ -220,7 +220,7 @@ def create_ui():
             with ExitStack() as stack:
                 if shared.opts.txt2img_settings_accordion:
                     stack.enter_context(gr.Accordion("Open for Settings", open=False))
-                stack.enter_context(gr.Column(variant="compact", elem_id="txt2img_settings"))
+                stack.enter_context(gr.Column(variant="compact", elem_id="txt2img_settings", elem_classes=["compact-settings-stack"]))
 
                 scripts.scripts_txt2img.prepare_ui()
 
@@ -483,7 +483,7 @@ def create_ui():
     scripts.scripts_current = scripts.scripts_img2img
     scripts.scripts_img2img.initialize_scripts(is_img2img=True)
 
-    with gr.Blocks(analytics_enabled=False, head=canvas_head) as img2img_interface:
+    with gr.Blocks(analytics_enabled=False, head=canvas_head, elem_classes=["forge-compact-ui"]) as img2img_interface:
         toprow = ui_toprow.Toprow(is_img2img=True)
 
         extra_tabs = gr.Tabs(elem_id="img2img_extra_tabs", elem_classes=["extra-networks"])
@@ -493,7 +493,7 @@ def create_ui():
             with ExitStack() as stack:
                 if shared.opts.img2img_settings_accordion:
                     stack.enter_context(gr.Accordion("Open for Settings", open=False))
-                stack.enter_context(gr.Column(variant="compact", elem_id="img2img_settings"))
+                stack.enter_context(gr.Column(variant="compact", elem_id="img2img_settings", elem_classes=["compact-settings-stack"]))
 
                 copy_image_buttons = []
                 copy_image_destinations = {}
@@ -812,10 +812,10 @@ def create_ui():
 
     scripts.scripts_current = None
 
-    with gr.Blocks(analytics_enabled=False) as extras_interface:
+    with gr.Blocks(analytics_enabled=False, elem_classes=["forge-compact-ui"]) as extras_interface:
         ui_postprocessing.create_ui()
 
-    with gr.Blocks(analytics_enabled=False) as pnginfo_interface:
+    with gr.Blocks(analytics_enabled=False, elem_classes=["forge-compact-ui"]) as pnginfo_interface:
         with ResizeHandleRow(equal_height=False):
             with gr.Column(variant="panel"):
                 image = gr.Image(elem_id="pnginfo_image", label="Source", source="upload", interactive=True, type="pil", height="50vh", image_mode="RGBA")
@@ -868,7 +868,7 @@ def create_ui():
     for _interface, label, _ifid in interfaces:
         shared.tab_names.append(label)
 
-    with gr.Blocks(theme=shared.gradio_theme, analytics_enabled=False, title="Stable Diffusion", head=canvas_head) as demo:
+    with gr.Blocks(theme=shared.gradio_theme, analytics_enabled=False, title="Stable Diffusion", head=canvas_head, elem_classes=["forge-compact-ui"]) as demo:
         settings.add_quicksettings()
 
         parameters_copypaste.connect_paste_params_buttons()
